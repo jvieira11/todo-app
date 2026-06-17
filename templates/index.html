@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h1 class="page-title">Minhas Tarefas
+    {% if tarefas %}
+        <span class="count-badge">{{ tarefas | length }}</span>
+    {% endif %}
+</h1>
+<p class="page-subtitle">Organize seu dia, uma tarefa por vez.</p>
+
+<div class="card">
+    <p class="card-title">
+        {% if editando %}✏️ Editando tarefa{% else %}➕ Nova tarefa{% endif %}
+    </p>
+
+    {% if editando %}
+    <form method="POST" action="/editar/{{ editando[0] }}">
+    {% else %}
+    <form method="POST" action="/criar">
+    {% endif %}
+
+        <div class="form-group">
+            <label class="form-label">Título</label>
+            <input
+                class="form-input"
+                type="text"
+                name="titulo"
+                placeholder="Ex: Estudar FastAPI"
+                value="{{ editando[1] if editando else '' }}"
+                required
+                autofocus
+            >
+        </div>
+        <div class="form-group">
+            <label class="form-label">Descrição (opcional)</label>
+            <input
+                class="form-input"
+                type="text"
+                name="descricao"
+                placeholder="Detalhes da tarefa..."
+                value="{{ editando[2] if editando else '' }}"
+            >
+        </div>
+        <button class="btn btn-primary" type="submit">
+            {% if editando %}Salvar alterações{% else %}Adicionar tarefa{% endif %}
+        </button>
+    </form>
+</div>
+
+<div class="tarefa-lista">
+    {% if tarefas %}
+        {% for t in tarefas %}
+        <div class="tarefa-item {{ 'concluida' if t[3] else '' }}">
+            <div>
+                <p class="tarefa-titulo">{{ t[1] }}</p>
+                {% if t[2] %}
+                <p class="tarefa-descricao">{{ t[2] }}</p>
+                {% endif %}
+            </div>
+            <div class="tarefa-acoes">
+                <form method="POST" action="/concluir/{{ t[0] }}">
+                    <button class="btn btn-success" type="submit">
+                        {{ '↩️' if t[3] else '✔️' }}
+                    </button>
+                </form>
+                <a href="/editar/{{ t[0] }}">
+                    <button class="btn btn-warning" type="button">✏️</button>
+                </a>
+                <form method="POST" action="/deletar/{{ t[0] }}">
+                    <button class="btn btn-danger" type="submit">🗑️</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            Nenhuma tarefa ainda. Crie a primeira acima! ☝️
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

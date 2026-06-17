@@ -1,0 +1,237 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --blue-900: #1e3a5f;
+    --blue-700: #1d4ed8;
+    --blue-500: #3b82f6;
+    --blue-100: #dbeafe;
+    --blue-50:  #eff6ff;
+
+    --green-700: #15803d;
+    --green-100: #dcfce7;
+
+    --red-700:  #b91c1c;
+    --red-100:  #fee2e2;
+
+    --yellow-700: #a16207;
+    --yellow-100: #fef9c3;
+
+    --gray-900: #111827;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+    --gray-200: #e5e7eb;
+    --gray-100: #f3f4f6;
+    --gray-50:  #f9fafb;
+    --white:    #ffffff;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+    --font-sans: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--gray-100);
+    color: var(--gray-900);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: var(--blue-900);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+}
+
+.navbar-brand {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 680px;
+    margin: 2.5rem auto;
+    padding: 0 1.25rem;
+}
+
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--blue-900);
+    margin-bottom: 0.25rem;
+}
+
+.page-subtitle {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    margin-bottom: 1.75rem;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.25rem;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 0.4rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    background-color: var(--gray-50);
+    color: var(--gray-900);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-input:focus {
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+    background-color: var(--white);
+}
+
+.btn {
+    padding: 0.6rem 1.1rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+    background-color: var(--blue-700);
+    color: var(--white);
+}
+
+.btn-primary:hover { background-color: var(--blue-900); }
+
+.btn-success {
+    background-color: var(--green-100);
+    color: var(--green-700);
+}
+
+.btn-success:hover { background-color: #bbf7d0; }
+
+.btn-warning {
+    background-color: var(--yellow-100);
+    color: var(--yellow-700);
+}
+
+.btn-warning:hover { background-color: #fef08a; }
+
+.btn-danger {
+    background-color: var(--red-100);
+    color: var(--red-700);
+}
+
+.btn-danger:hover { background-color: #fecaca; }
+
+.tarefa-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tarefa-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--gray-200);
+    transition: border-color 0.15s;
+}
+
+.tarefa-item:hover { border-color: var(--blue-100); }
+
+.tarefa-item.concluida {
+    background-color: var(--gray-50);
+    border-color: var(--gray-200);
+    opacity: 0.7;
+}
+
+.tarefa-titulo {
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--gray-900);
+}
+
+.tarefa-item.concluida .tarefa-titulo {
+    text-decoration: line-through;
+    color: var(--gray-400);
+}
+
+.tarefa-descricao {
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    margin-top: 0.2rem;
+}
+
+.tarefa-acoes {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--gray-400);
+    font-size: 0.95rem;
+}
+
+.count-badge {
+    display: inline-block;
+    background-color: var(--blue-100);
+    color: var(--blue-700);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}

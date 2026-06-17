@@ -1,0 +1,4 @@
+__psyache__/
+*.pyc
+.vscode/
+venv/
